@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(function() {
+  var heighest = 0;
+  var $columnsToEqualize = $(".column");
+  $columnsToEqualize.each(function() {
+    var thisHeight = $(this).height();
+    if (thisHeight > heighest) {
+      heighest = thisHeight;
+    }
+  });
+  $columnsToEqualize.height(heighest);
+});
