@@ -1,0 +1,12 @@
+<% @users.each do |user| %>
+	<h1><%= link_to user.username, user %> (Posts: <%= user.posts.count %>)</h1>
+		<div class="entry">
+			<%= truncate(user.posts.last.content, :length => 600).html_safe unless user.posts.blank? %>
+		</div>
+		
+		<div style="clear:both;"></div>
+		<hr />
+	<div style="clear:both;"></div>
+<% end %>
+
+<%= paginate @users %>
