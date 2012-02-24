@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224180212) do
+ActiveRecord::Schema.define(:version => 20120224184241) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20120224180212) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.string   "username"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "posts_count",   :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
