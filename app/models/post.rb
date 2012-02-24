@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true, length: {minimum: 2}
 	has_many :taggables, :dependent => :destroy
 	has_many :tags, :through => :taggables
+	has_many :comments, :dependent => :destroy
 
 	default_scope order("created_at DESC")
 
