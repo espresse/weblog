@@ -33,4 +33,14 @@ describe Post do
     before { @post.content = "a" }
     it { should_not be_valid }
   end 
+
+  describe Post do
+    context "after save" do
+      it "should have pretty permalink" do
+        user = Factory.create(:user)
+        post = Factory.create(:post, :user =>user, :title => "What a wonderful world")
+        post.to_param.should == "#{post.id}-what-a-wonderful-world"
+      end
+    end
+  end
 end
