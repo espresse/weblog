@@ -3,7 +3,10 @@ require 'spec_helper'
 describe Post do
 
   before do
-    @post = Post.new(:title => "Example post", :content => "Example content")
+    @user = User.new(username: "Example User", email: "user@example.com", 
+            password: "foobar", password_confirmation: "foobar")
+
+    @post = Post.new(user_id: @user_id, :title => "Example post", :content => "Example content")
   end
 
   subject { @post }
@@ -27,6 +30,5 @@ describe Post do
   describe "when content is too short" do
     before { @post.content = "a" }
     it { should_not be_valid }
-  end
-
+  end 
 end
