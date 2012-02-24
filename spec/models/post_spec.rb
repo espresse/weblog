@@ -35,11 +35,19 @@ describe Post do
   end 
 
   describe Post do
+    before do
+      @user = Factory.create(:user)
+      @post = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag2, tag3")
+    end
+
     context "after save" do
       it "should have pretty permalink" do
-        user = Factory.create(:user)
-        post = Factory.create(:post, :user =>user, :title => "What a wonderful world")
-        post.to_param.should == "#{post.id}-what-a-wonderful-world"
+        @post.to_param.should == "#{@post.id}-what-a-wonderful-world"
+      end
+
+      it "should return valid tag list" do
+        @post.tag_list.should eq "tag1, tag2, tag3"
+        @post.tags.map { |tag| tag.name }.should eq ["tag1", "tag2", "tag3"]
       end
     end
   end
