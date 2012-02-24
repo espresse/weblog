@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  has_many :posts
+  has_many :posts, :dependent => :destroy
 
   validates_confirmation_of :password
   validates :password, presence: true, length: { minimum: 6}, :on => :create
