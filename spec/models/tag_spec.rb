@@ -21,6 +21,17 @@ describe Tag do
       @post2 = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag4")
     end
 
+    context "after save" do
+      it "should have pretty permalink" do
+        Tag.where(:name => 'tag3').first.to_param.should == "tag3"
+      end
+
+      it "should return valid tag list" do
+        @post1.tag_list.should eq "tag1, tag2, tag3"
+        @post1.tags.map { |tag| tag.name }.should eq ["tag1", "tag2", "tag3"]
+      end
+    end
+
     context "when posts have tags" do
       it "should have one or more posts" do
         Tag.where(:name=>"tag1").first.posts.should eq [@post2, @post1]
