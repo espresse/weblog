@@ -9,3 +9,9 @@ Factory.define :post do |f|
   f.content "Lorem ipsum" * 400
   f.user { |p| p.association(:user) }
 end
+
+Factory.define :comment do |f|
+  f.sequence(:content) { |n| "Comment #{n}" }
+  f.user { |c| p.association(:user) }
+  f.post { |c| c.association(:post) }
+end

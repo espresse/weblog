@@ -51,6 +51,14 @@ describe Post do
       end
     end
 
+    context "with comments" do
+      it "should have them :)" do
+        comment1 = Factory.create(:comment, :user=>@user, :post=>@post)
+        comment2 = Factory.create(:comment, :user=>@user, :post=>@post)
+        @post.reload.comments.should eq([comment1, comment2])
+      end
+    end
+
 
     after do
       User.all.each { |u| u.destroy }
