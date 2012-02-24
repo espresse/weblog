@@ -13,6 +13,9 @@ describe Post do
 
   it { should respond_to(:title) }
   it { should respond_to(:content) }
+  it { should respond_to(:tag_list) }
+  it { should respond_to(:tags) }
+  #it {should respond_to (:comments)}
 
   it { should be_valid }
 
@@ -20,8 +23,7 @@ describe Post do
     before { @post.title = " " }
     it { should_not be_valid }
   end
-
-
+  
   describe "when content is not present" do
     before { @post.content = " " }
     it { should_not be_valid }
