@@ -73,4 +73,19 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
+
+  describe "return value of authenticate method" do
+    before { @user.save }
+
+    describe "with valid password" do
+      it { should == User.authenticate(@user.email, @user.password) }
+    end
+
+    describe "with invalid password" do
+      let(:user_for_invalid_password) { User.authenticate("invalid", "invalid_password") }
+
+      it { should_not == user_for_invalid_password }
+      specify { user_for_invalid_password.should be_false }
+    end
+  end
 end
