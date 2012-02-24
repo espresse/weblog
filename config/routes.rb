@@ -1,4 +1,18 @@
 Weblog::Application.routes.draw do
+  get "sign-out" => "sessions#destroy", :as => "log_out"
+  get "sign-in" => "sessions#new", :as => "log_in"
+  get "sign-up" => "users#new", :as => "sign_up"
+
+  root :to => "posts#index"
+
+  resources :users
+  resources :sessions
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :tags
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
