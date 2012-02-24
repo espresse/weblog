@@ -4,11 +4,68 @@
   <title>Weblog</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= auto_discovery_link_tag(:atom, "/feeds.atom") %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+	<body>
+		<!-- Define Header -->
+		<header>
+			&nbsp;
+			<!-- Define Navigation/Menu -->
+			<div class="logo">
+				<div class="innerlogo">
+					<span id="logo1">WEB</span><span id="logo2">LOG</span>
+				</div>
+			</div>
+			<nav>
+				<%= link_to "homepage", root_path %>
+				<%= link_to "posts", posts_path %>
+				<%= link_to "authors", users_path %>
+				<%= link_to image_tag("feed.png", :size=>"32x32"), "/feeds.atom" %>
+			</nav>
+			<!-- End Navigation -->
+		</header>
+		<!-- End Header -->
 
-<%= yield %>
+		<div id="main">
+			<!-- Sidebar -->
+			<aside class="column">
+				<div id="search">
+					<%= form_tag search_tags_path do %>
+						<input id="search-text" type="text" value="" name="s" placeholder="Search for tag...">
+						<input id="search-submit" type="submit" value="GO">
+					<% end %>
+				</div>
+				<div id="buttons">
+					<% if current_user %>
+						<%= link_to "Sign-out", log_out_path, :class=>"button-link" %>
+					<% else %>
+						<%= link_to "Sign-up", sign_up_path, :class=>"button-link" %>
+						or
+						<%= link_to "Sign-in", log_in_path, :class=>"button-link" %>
+					<% end %>
+				</div>
 
-</body>
+				<h2>Authors</h2>
+				<h2>Last comments</h2>
+			</aside>
+			<!-- End Sidebar -->
+			<!-- Main content area -->
+			<section class="column">
+				<div id="content">
+					<% flash.each do |name, msg| %>
+					  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+					<% end %>
+
+					<%= yield %>
+				</div>
+			</section>
+		</div>
+		<!-- End of Main content area -->
+		<div style="clear:both;"></div>
+		<!-- Footer -->
+		<footer>Copyright (c) 2012 Sitename.com. All rights reserved. Design by Michal Ostrowski.</footer>
+		<!-- End of Footer -->
+
+	</body>
 </html>
