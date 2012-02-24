@@ -4,6 +4,7 @@
   <title>Weblog</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= auto_discovery_link_tag(:atom, "/feeds.atom") %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 	<body>
@@ -65,8 +66,5 @@
 		<!-- Footer -->
 		<footer>Copyright (c) 2012 Sitename.com. All rights reserved. Design by Michal Ostrowski.</footer>
 		<!-- End of Footer -->
-		<script>
-  			<%= javascript_include_tag "application" %>
-		</script>
 	</body>
 </html>
