@@ -14,4 +14,24 @@ describe Tag do
   it { should respond_to(:name) }
   it { should be_valid }
 
+  describe Tag do
+    before do
+      @user = Factory.create(:user)
+      @post1 = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag2, tag3")
+      @post2 = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag4")
+    end
+
+    context "when posts have tags" do
+      it "should have one or more posts" do
+        Tag.where(:name=>"tag1").first.posts.should eq [@post2, @post1]
+        Tag.where(:name=>"tag2").first.posts.should eq [@post1]
+        Tag.where(:name=>"tag4").first.posts.should eq [@post2]
+      end
+    end
+    after do
+      User.all.each { |u| u.destroy }
+      Post.all.each { |p| p.destroy }
+      Tag.all.each { |t| t.destroy }
+    end
+  end
 end

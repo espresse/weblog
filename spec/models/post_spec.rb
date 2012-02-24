@@ -50,5 +50,11 @@ describe Post do
         @post.tags.map { |tag| tag.name }.should eq ["tag1", "tag2", "tag3"]
       end
     end
+
+    after do
+      User.all.each { |u| u.destroy }
+      Post.all.each { |p| p.destroy }
+      Tag.all.each { |t| t.destroy }
+    end
   end
 end
