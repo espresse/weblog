@@ -12,7 +12,11 @@ Weblog::Application.routes.draw do
     resources :comments
   end
 
-  resources :tags
+  resources :tags, :only => [:index, :show] do 
+    collection do
+      post "search" => "tags#search"
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
