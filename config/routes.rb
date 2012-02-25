@@ -17,6 +17,8 @@ Weblog::Application.routes.draw do
       post "search" => "tags#search"
     end
   end
+  
+  resources :feeds, :only => [:index]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
