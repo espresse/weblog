@@ -79,4 +79,8 @@ describe "UserAuthentication" do
     visit log_out_path
     page.should have_content("Logged out!")
   end
+
+  after do
+    User.all.each { |u| u.destroy }
+  end
 end

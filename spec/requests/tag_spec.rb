@@ -48,5 +48,9 @@ describe "Tag" do
     click_button "GO"
     page.should have_content post2.title
   end
-
+  
+  after do
+    User.all.each { |u| u.destroy }
+    Post.all.each { |p| p.destroy }
+  end
 end

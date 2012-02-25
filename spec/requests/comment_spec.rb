@@ -86,6 +86,11 @@ describe "Comment" do
       page.should have_content(comment1.content)
     end
   end
+  
+  after do
+    User.all.each { |u| u.destroy }
+    Post.all.each { |p| p.destroy }
+  end
 
   
 end
