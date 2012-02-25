@@ -1,0 +1,13 @@
+<h1><%= @post.title %></h1>
+
+<p class="meta">
+	<span class="date"><%= l @post.created_at, :format => :short %></span>
+	<span class="posted">Posted by <%= link_to @post.user.username, @post.user %></span>
+	<br />
+</p>
+
+<div class="entry">
+	<%= @post.content.html_safe %>					
+</div>
+<div style="clear:both;"></div>
+<hr />
