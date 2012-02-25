@@ -1,0 +1,28 @@
+<%= form_for [post, comment], :html => { :class => "box" } do |f| %>
+ <% if comment.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in comment.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset class="boxBody">
+  	<% unless current_user %>
+	    <%= f.label :user_email %><br />
+	    <%= f.text_field :user_email, :class=>"input_text", :required => "required" %>
+	  
+	    <%= f.label :username %><br />
+	    <%= f.text_field :username, :class=>"input_text", :required => "required" %>
+	 <% end %>
+  
+    <%= f.label :content %><br />
+    <%= f.text_area :content, :class=>"txtField", :required => "required" %>
+  </fieldset>
+  
+  <footer>
+    <%= f.submit "Submit", :class => "btnSubmit" %>  
+  </footer>
+<% end %>
