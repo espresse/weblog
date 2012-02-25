@@ -45,11 +45,14 @@
 						<%= link_to "Sign-in", log_in_path, :class=>"button-link" %>
 					<% end %>
 				</div>
-				
+
 				<%= render "admin_sidebar" if current_user %>
 
 				<h2>Authors</h2>
 				<h2>Last comments</h2>
+				<ul>
+					<%= render :partial => "comments/comment", :collection => last_comments %>
+				</ul>
 			</aside>
 			<!-- End Sidebar -->
 			<!-- Main content area -->
