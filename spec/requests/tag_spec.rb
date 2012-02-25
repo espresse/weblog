@@ -31,4 +31,22 @@ describe "Tag" do
   end
 
   
+  it "should allow to search for a tag" do
+    post2.save
+  	visit root_path
+    fill_in "search-text", :with => "lorem"
+    click_button "GO"
+    page.should have_content post1.title
+    page.should have_content post2.title
+
+    fill_in "search-text", :with => "dolor"
+    click_button "GO"
+    page.should have_content post1.title
+    page.should have_content post2.title
+
+    fill_in "search-text", :with => "color"
+    click_button "GO"
+    page.should have_content post2.title
+  end
+
 end

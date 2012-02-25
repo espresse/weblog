@@ -1,0 +1,44 @@
+<h1>Posts for: <%= params[:id] %></h1>
+<hr />
+<% unless @posts.blank? %>
+	<% @posts.each do |post| %>
+		<h1><%= link_to post.title, post %></h1>
+			<p class="meta">
+				<span class="date"><%= l post.created_at, :format => :short %></span>
+				<span class="posted">Posted by <a href="#"><%= post.user.username %></a></span>
+				<br />
+				<% unless post.tags.blank? %>
+					<span class="tags">TAGS: 
+						<% post.tags.each do |tag| %>
+							<span class="tag"><%= link_to tag.name, tag %></span>
+						<% end %>
+					</span>
+				<% end %>
+
+			</p>
+
+			<div class="entry">
+				<%= truncate(post.content, :length => 600).html_safe %>
+
+				<nav>
+					<%= link_to "Read More", post, :class => "more" %>
+					<%= link_to "Comments", post_path(post)+"#comments", :class => "more" %>
+				</nav>
+			</div>
+			
+			<div style="clear:both;"></div>
+			<hr />
+	<% end %>
+
+	<%= paginate @posts %>
+<% else %>
+	<p>We are sorry, but there are no posts tagged as <strong><%= params[:id] %></strong></p>
+	<% unless @tags.blank? %>
+		<p>Take a look at those tags:</p>
+		<p>
+			<% @tags.each do |tag| %>
+				<span id="tag"><%= link_to tag.name, tag %> </span>
+			<% end %>
+		</p>
+	<% end %>
+<% end %>
