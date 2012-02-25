@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_filter :authorize_admin!, :except => [:index, :show]
 	before_filter :find_post, :only => [:show, :edit, :update, :destroy]
 
 	def index
