@@ -4,6 +4,13 @@
 	<span class="date"><%= l @post.created_at, :format => :short %></span>
 	<span class="posted">Posted by <%= link_to @post.user.username, @post.user %></span>
 	<br />
+	<% unless @post.tags.blank? %>
+		<span class="tags">TAGS: 
+			<% @post.tags.each do |tag| %>
+				<span class="tag"><%= link_to tag.name, tag %></span>
+			<% end %>
+		</span>
+	<% end %>
 </p>
 
 <div class="entry">
