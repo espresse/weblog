@@ -18,3 +18,15 @@
 </div>
 <div style="clear:both;"></div>
 <hr />
+<a name="comments"></a>
+<div class="comments">
+	<h1>Comments - <%= @post.comments.size %></h1>
+
+	<%= render :partial => "comments/element", :collection => @post.comments %>
+</div>
+<a name="add-comment"></a>
+<div id="add_comment">
+	<h1>Add your comment</h1>
+	<%= render "comments/form", :post => @post, :comment => @post.comments.build %>
+</div>
+
