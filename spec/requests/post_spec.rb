@@ -72,4 +72,9 @@ describe "Post" do
   	page.should have_content(post1.title)
   	page.should have_content(post2.title)
   end
+
+  after do
+    User.all.each { |u| u.destroy }
+    Post.all.each { |p| p.destroy }
+  end
 end
