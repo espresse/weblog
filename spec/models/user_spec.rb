@@ -88,4 +88,9 @@ describe User do
       specify { user_for_invalid_password.should be_false }
     end
   end
+
+
+  after do
+    User.all.each { |u| u.destroy }
+  end
 end

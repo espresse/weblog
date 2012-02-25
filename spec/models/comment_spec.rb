@@ -54,4 +54,10 @@ describe Comment do
   	end
   	it { should be_valid }
   end
+
+  
+  after do
+    User.all.each { |u| u.destroy }
+    Post.all.each { |p| p.destroy }
+  end
 end
