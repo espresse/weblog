@@ -13,7 +13,7 @@ describe "Post" do
   	fill_in "Email", :with => user.email
   	fill_in "Password", :with => user.password
   	click_button "Submit"
-  	click_link "New post"
+  	click_link "New"
   	fill_in "Title", :with => "My new title"
   	fill_in "Content", :with => "Lorem ipsum is the best content"
   	click_button "Submit"
@@ -41,7 +41,7 @@ describe "Post" do
   	fill_in "Email", :with => second_user.email
   	fill_in "Password", :with => second_user.password
   	click_button "Submit"
-
+    visit root_path
   	click_link post1.title
   	page.should have_content("Posted by #{user.username}")
   	page.should_not have_link("Edit")
@@ -55,6 +55,7 @@ describe "Post" do
   	fill_in "Email", :with => user.email
   	fill_in "Password", :with => user.password
   	click_button "Submit"
+    visit root_path
   	click_link post1.title
   	page.should have_content("Posted by #{user.username}")
   	page.should have_link("Edit")

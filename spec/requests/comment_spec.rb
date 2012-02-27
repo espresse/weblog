@@ -23,6 +23,7 @@ describe "Comment" do
   	fill_in "Email", :with => user.email
   	fill_in "Password", :with => user.password
   	click_button "Submit"
+    visit root_path
   	click_link post1.title
   	fill_in "Content", :with => "Lorem ipsum is the best content"
   	click_button "Submit"
@@ -37,6 +38,7 @@ describe "Comment" do
     fill_in "Email", :with => user.email
     fill_in "Password", :with => user.password
     click_button "Submit"
+    visit root_path
     click_link post1.title
     click_button "Submit"
     page.should have_content("Content can't be blank")
