@@ -5,6 +5,11 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= auto_discovery_link_tag(:atom, "/feeds.atom") %>
   <script type='text/javascript'>window.q=[];window.$=function(f){q.push(f)}</script>
+  <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+  <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+  <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 	<body>
