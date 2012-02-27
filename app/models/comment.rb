@@ -10,7 +10,11 @@ class Comment < ActiveRecord::Base
 
 	before_validation :set_user
 
-	private 
+	private
+	#comment needs an author. If the author is anonymous fields username and content had to be filled in.
+	#validation here helps to detect if this actually is true.
+	#In case of author being logged in user there is no need to fill-in username and email again and again
+	#so to prevent validation to return false the user's username and email is copied to required fields.
 	def set_user
 		if self.user
 			self.username = self.user.username

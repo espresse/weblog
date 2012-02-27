@@ -13,6 +13,8 @@ class Post < ActiveRecord::Base
 	default_scope order("created_at DESC")
 
 
+	#adding SEO-friendly title for posts. Internet robots will scan the title and index it.
+	#more SEO actions have to be prepared though.
 	def to_param
 		"#{id}-#{title.downcase.gsub(/[(,?!\'":.)]/, '').gsub(' ', '-').gsub(/-$/, '')}"
 	end
