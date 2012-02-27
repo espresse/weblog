@@ -1,0 +1,147 @@
+/* Override here any style defined by web-app-theme */
+.error_messages {
+    background-color: red;
+    broder: 1px solid;
+    margin: 10px;
+}
+
+.error_messages h2 {
+    margin: 20px;
+    background: none;
+    background-color: white;
+}
+
+.error_messages p {
+    margin: 10px;
+}
+
+.error_messages ul {
+    
+}
+
+.sortable ol {
+    list-style-type: none;
+    margin: 15px;
+}
+
+.sortable li {
+    margin: 10px;
+    cursor: pointer;
+}
+
+tr:nth-child(even) {background-color: transparent;}
+tr:nth-child(odd) {background-color: #F8F8F8;}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+li {
+    padding: 2px;
+}
+li:hover {
+    background-color: #ddd;
+}
+
+.box {
+    background-color: #368F1A;
+    padding: 4px 10px 4px 10px;
+    margin: 0px 10px 4px 4px;
+    color: #fff;
+}
+
+.box a {
+    color: #fff;
+    font: bold 12px Arial, Helvetica, sans-serif; 
+}
+
+.box a:hover {
+    text-decoration: underline;
+}
+
+body {
+  background-color: #FFF;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: #0000FF;
+}
+
+#calendar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td,
+#calendar th {
+  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+#calendar .notmonth {
+  color: #CCC;
+}
+
+#calendar .weekend {
+  background-color: #eee;
+}
+
+#calendar #month {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#calendar #month a, #calendar #month a:hover {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+
+#calendar .today {
+  background-color: #D7F2FF;
+}
+
+#calendar ul {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+#calendar li {
+  margin: 0;
+  padding: 0;
+  font-size: 21px;
+  text-align: center;
+  color: black;
+}
+
+span.hide {
+    display: none;
+}
+
