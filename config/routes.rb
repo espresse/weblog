@@ -8,7 +8,7 @@ Weblog::Application.routes.draw do
   resources :users, :only => [:index, :show, :new, :create]
   resources :sessions, :only => [:new, :create, :destroy]
 
-  resources :posts do
+  resources :posts, :only => [:index, :show] do
     resources :comments
   end
 
@@ -19,6 +19,11 @@ Weblog::Application.routes.draw do
   end
   
   resources :feeds, :only => [:index]
+
+  #admin panel
+  namespace :admin do
+    resources :posts
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
