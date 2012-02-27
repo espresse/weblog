@@ -5,11 +5,11 @@ Weblog::Application.routes.draw do
 
   root :to => "posts#index"
 
-  resources :users
-  resources :sessions
+  resources :users, :only => [:index, :show, :new, :create]
+  resources :sessions, :only => [:new, :create, :destroy]
 
   resources :posts do
-    resources :comments
+    resources :comments, :only => [:new, :create]
   end
 
   resources :tags, :only => [:index, :show] do 
