@@ -9,26 +9,12 @@
   <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
   <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
   <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-  <script src="js/libs/modernizr-2.5.3.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 	<body>
 		<!-- Define Header -->
 		<header>
-			&nbsp;
-			<!-- Define Navigation/Menu -->
-			<div class="logo">
-				<div class="innerlogo">
-					<span id="logo1">WEB</span><span id="logo2">LOG</span>
-				</div>
-			</div>
-			<nav>
-				<%= link_to "homepage", root_path %>
-				<%= link_to "posts", posts_path %>
-				<%= link_to "authors", users_path %>
-				<%= link_to image_tag("feed.png", :size=>"32x32"), "/feeds.atom" %>
-			</nav>
-			<!-- End Navigation -->
+			<%= render "shared/header" %>
 		</header>
 		<!-- End Header -->
 
