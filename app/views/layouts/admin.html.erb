@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weblog - Admin section</title>
+  <%= stylesheet_link_tag "web-app-theme/base" %>
+  <%= stylesheet_link_tag "web-app-theme/themes/activo/style" %>
+  <%= stylesheet_link_tag "web-app-theme/override" %>
+  <%= javascript_include_tag "admin/admin", :debug => Rails.env.development? %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">Weblog - Admin</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <li><span class="box" title="User"><%= link_to current_user.username, admin_posts_path %></span></li>
+          <li><%= link_to t("web-app-theme.logout", :default => "Logout"), log_out_path, :class=>"logout" %></a></li>
+        </ul>
+      </div>
+      <div id="main-navigation">
+        <ul class="wat-cf">
+          <li><%= link_to "Posts", admin_posts_path %></li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+            <p>Copyright &copy; <%= Time.now.year %> Web App.</p>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
