@@ -19,3 +19,6 @@ You can fill in your database with fake data using:
     bundler exec rspec spec
 
 = Additional question:
+The Weblog application is not ready for high traffic. If such situation occures we should add action caching which reduces to minimum queries to database. Limited traffic will go to the application server. Http server will serve cached content instead.
+In rails applying action catching is as simple as adding line: caches_action :index, :show
+To be sure that http server would be also ready for the high traffic we could use use CDN (Content Delivery Network) for better user performance (cached page is taken from the nearest server).
