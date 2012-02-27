@@ -10,7 +10,7 @@ atom_feed :language => 'en' do |feed|
       entry.summary(truncate(strip_tags(post.content), :length => 200))
 
       entry.author do |author|
-        author.name(post.user.username)
+        author.name(post.user_username)
       end
     end
   end

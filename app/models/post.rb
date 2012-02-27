@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
 	has_many :tags, :through => :taggables
 	has_many :comments, :dependent => :destroy
 
+	delegate :username, :to => :user, :prefix => true
+
 	default_scope order("created_at DESC")
 
 
