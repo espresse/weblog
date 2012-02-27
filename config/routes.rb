@@ -9,7 +9,7 @@ Weblog::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :posts do
-    resources :comments, :only => [:new, :create]
+    resources :comments
   end
 
   resources :tags, :only => [:index, :show] do 
