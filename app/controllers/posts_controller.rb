@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 	before_filter :authorize_admin!, :except => [:index, :show]
 	before_filter :find_post, :only => [:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!, :except => [:index, :show, :new, :create]
-
+	before_filter :authorize_user!, :except => [:index, :show, :new, :create]
+	
 	def index
 		@posts = Post.order('created_at DESC').page params[:page]
 	end
@@ -54,7 +54,8 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
-	def authenticate_user!
+	#only a user who made a post can manage it
+	def authorize_user!
 		unless @post.user == current_user 
 			flash[:error] = "You are not allowed to manage this post"
 			redirect_to @post

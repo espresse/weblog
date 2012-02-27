@@ -2,6 +2,8 @@ class FeedsController < ApplicationController
   
   layout false
   
+  # well... I prefer atom over rss so, all rss request are going to parse atom. 
+  # this doesn't affect end-user experience :)
   def index
     @posts = Post.limit 50
     @title = "Weblog - last posts"

@@ -12,6 +12,8 @@ class TagsController < ApplicationController
 		end
 	end
 
+	#an action used for search. Actually it's a redirection to show action, so after performing search 
+	#user get nice looking http address
 	def search
 		redirect_to tag_path(:id => params[:s])
 	end
