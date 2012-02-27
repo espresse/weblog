@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 $(function() {
   var heighest = 0;
   var $columnsToEqualize = $(".column");
