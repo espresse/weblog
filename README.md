@@ -2,7 +2,7 @@ Weblog
 ============
 Blogging application written in Ruby 1.9 and Ruby on Rails 3.2
 
-You can download the source from GitHub:
+You can download the source code from GitHub:
 
       git clone git@github.com:espresse/weblog.git
 
@@ -30,9 +30,9 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 Additional question
 ------------------
 
-The Weblog application is not ready for high traffic. If such situation occures we should add action caching which reduces to minimum queries to database. Limited traffic will go to the application server. Http server will serve cached content instead.
+The Weblog application is not ready for high traffic. If such situation occures one should add "action caching" which reduces to minimum queries to database. Limited traffic will reach the application server. Http server will serve cached content instead.
 In rails applying action catching is as simple as adding a line to the posts controller: 
     
     caches_action :index, :show
     
-To be sure that http server would be also ready for the high traffic we could use use CDN (Content Delivery Network) for better user performance (cached page is taken from the nearest server).
+To be sure that http server would be ready for the high traffic as well we could use use CDN (Content Delivery Network) for better user performance (cached page is taken from the nearest server).
