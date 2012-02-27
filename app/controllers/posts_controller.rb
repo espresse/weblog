@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 	before_filter :authorize_admin!, :except => [:index, :show]
 	before_filter :find_post, :only => [:show, :edit, :update, :destroy]
-	before_filter :authorize_user!, :except => [:index, :show, :new, :create]
 	
 	def index
 		@posts = Post.order('created_at DESC').page params[:page]
@@ -10,43 +9,6 @@ class PostsController < ApplicationController
 	def show
 	end
 
-	def new
-		@post = current_user.posts.new
-	end
-
-	def create
-		@post = current_user.posts.new(params[:post])
-		if @post.save
-			flash[:notice] = "The post has been updated."
-			redirect_to @post
-		else
-			flash[:error] = "Post could not be save."
-			render :new
-		end
-	end
-
-	def edit
-	end
-
-	def update
-		if @post.update_attributes(params[:post])
-			flash[:notice] = "The post has been updated."
-			redirect_to @post
-		else
-			flash[:error] = "Post could not be save."
-			render :new
-		end	
-	end
-
-	def destroy
-		if @post.destroy
-			flash[:notice] = "The post has been deleted."
-			redirect_to @post
-		else
-			flash[:error] = "Post could not be deleted."
-			render :new
-		end	
-	end
 
 	private
 
@@ -54,12 +16,4 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
-	#only a user who made a post can manage it
-	def authorize_user!
-		unless @post.user == current_user 
-			flash[:error] = "You are not allowed to manage this post"
-			redirect_to @post
-		end
-	end
-	
 end
