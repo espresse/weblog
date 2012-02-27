@@ -5,17 +5,10 @@ describe "Comment" do
   let(:post1) { Factory(:post, :user => user) }
   let(:post2) { Factory(:post, :user => user) }
 
-  let(:comment1) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment2) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment3) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment4) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment5) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment6) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment7) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment8) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment9) { Factory(:comment, :user => user, :post_id => post2.id) }
-  let(:comment10) { Factory(:comment, :user => user, :post_id => post2.id) }
-
+  10.times do |i|
+    let("comment#{i+1}".to_sym) { Factory(:comment, :user => user, :post_id => post2.id) }
+  end
+  
   before { post1.save }
 
   it "should allow registered user to add a comment" do 
