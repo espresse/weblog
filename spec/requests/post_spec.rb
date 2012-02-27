@@ -22,7 +22,7 @@ describe "Post" do
   end
 
   it "should not allow unregistered user to add a post" do 
-  	visit new_post_path
+  	visit new_admin_post_path
   	page.should have_content("You are not authorized to view this content")
   end
 
@@ -32,7 +32,7 @@ describe "Post" do
   	page.should have_content("Posted by #{user.username}")
   	page.should_not have_link("Edit")
   	page.should_not have_link("Delete")
-  	visit edit_post_path(post1)
+  	visit edit_admin_post_path(post1)
   	page.should have_content("You are not authorized to view this content")
   end
 
@@ -46,7 +46,7 @@ describe "Post" do
   	page.should have_content("Posted by #{user.username}")
   	page.should_not have_link("Edit")
   	page.should_not have_link("Delete")
-  	visit edit_post_path(post1)
+  	visit edit_admin_post_path(post1)
   	page.should have_content("You are not allowed to manage this post")
   end
 
@@ -59,7 +59,7 @@ describe "Post" do
   	page.should have_content("Posted by #{user.username}")
   	page.should have_link("Edit")
   	page.should have_link("Delete")
-  	visit edit_post_path(post1)
+  	visit edit_admin_post_path(post1)
   	page.should have_content "Edit post"
   	fill_in "Title", :with => "My new title"
   	click_button "Submit"

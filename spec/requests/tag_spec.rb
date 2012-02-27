@@ -26,7 +26,7 @@ describe "Tag" do
     visit root_path
   	click_link post1.title
     page.should_not have_content('Edit Post')
-    visit edit_post_path(post1)
+    visit edit_admin_post_path(post1)
   	page.should have_content("You are not authorized to view this content")
   end
 
