@@ -6,6 +6,12 @@ You can download the source code from GitHub:
 
       git clone git@github.com:espresse/weblog.git
 
+Don't forget to run 
+
+      bundle install
+
+to download all required by Weblog gem packages.
+
 Database 
 --------
 
