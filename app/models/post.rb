@@ -1,14 +1,14 @@
 class Post < ActiveRecord::Base
 
-	belongs_to :user, :counter_cache => true
+	belongs_to :user, counter_cache: true
 
 	validates :title, presence: true
 	validates :content, presence: true, length: {minimum: 2}
-	has_many :taggables, :dependent => :destroy
-	has_many :tags, :through => :taggables
-	has_many :comments, :dependent => :destroy
+	has_many :taggables, dependent: :destroy
+	has_many :tags, through: :taggables
+	has_many :comments, dependent: :destroy
 
-	delegate :username, :to => :user, :prefix => true
+	delegate :username, to: :user, prefix: true
 
 	default_scope order("created_at DESC")
 
@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
 		unless _recent_tags.blank?
 			tags_to_remove = _recent_tags - _new_tags
 			tags_to_remove.each do |tag|
-				self.tags.where(:name => tag).first.destroy
+				self.tags.where(name: tag).first.destroy
 			end
 		end
 

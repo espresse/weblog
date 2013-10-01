@@ -1,24 +1,24 @@
 Weblog::Application.routes.draw do
-  get "sign-out" => "sessions#destroy", :as => "log_out"
-  get "sign-in" => "sessions#new", :as => "log_in"
-  get "sign-up" => "users#new", :as => "sign_up"
+  get "sign-out" => "sessions#destroy", as: "log_out"
+  get "sign-in" => "sessions#new", as: "log_in"
+  get "sign-up" => "users#new", as: "sign_up"
 
-  root :to => "posts#index"
+  root to: "posts#index"
 
-  resources :users, :only => [:index, :show, :new, :create]
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :users, only: [:index, :show, :new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
 
-  resources :posts, :only => [:index, :show] do
+  resources :posts, only: [:index, :show] do
     resources :comments
   end
 
-  resources :tags, :only => [:index, :show] do 
+  resources :tags, only: [:index, :show] do 
     collection do
       post "search" => "tags#search"
     end
   end
   
-  resources :feeds, :only => [:index]
+  resources :feeds, only: [:index]
 
   #admin panel
   namespace :admin do

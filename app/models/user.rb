@@ -4,16 +4,16 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  has_many :posts, :dependent => :destroy
+  has_many :posts, dependent: :destroy
 
   validates_confirmation_of :password
-  validates :password, presence: true, length: { minimum: 6}, :on => :create
+  validates :password, presence: true, length: { minimum: 6}, on: :create
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: { case_sensitive: false }
   validates :username,  presence: true, length: { maximum: 25 }, uniqueness: { case_sensitive: false }
 
-  default_scope :order => ('posts_count desc')
+  default_scope order: ('posts_count desc')
   
   scope :active_5, limit(5)
 

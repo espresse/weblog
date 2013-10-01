@@ -10,8 +10,8 @@ class FeedsController < ApplicationController
     @updated = @posts.first.created_at unless @posts.empty?
     respond_to do |format|
       format.rss do
-        redirect_to feeds_path(:format => :atom),
-                    :status=>:moved_permanently
+        redirect_to feeds_path(format: :atom),
+                    status: :moved_permanently
       end
       format.atom
     end

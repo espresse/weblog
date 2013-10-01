@@ -1,7 +1,7 @@
 class Admin::PostsController < ApplicationController
 	layout "admin"
-	before_filter :authorize_admin!, :except => [:index, :show]
-	before_filter :find_post, :only => [:show, :edit, :update, :destroy]
+	before_filter :authorize_admin!, except: [:index, :show]
+	before_filter :find_post, only: [:show, :edit, :update, :destroy]
 	
 	def index
 		@posts = current_user.posts.order('created_at DESC').page params[:page]
