@@ -33,12 +33,10 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 
     bundler exec rspec spec
 
-Additional question
-------------------
-
-The Weblog application is not ready for high traffic. If such situation occures one should add "action caching" which reduces to minimum queries to database. Limited traffic will reach the application server. Http server will serve cached content instead.
-In rails applying action catching is as simple as adding a line to the posts controller: 
-    
-    caches_action :index, :show
-    
-To be sure that http server would be ready for the high traffic as well we could use use CDN (Content Delivery Network) for better user performance (cached page is taken from the nearest server).
+TODO
+----
+* change to ruby 2.0 (syntax)
+* move from erb to haml
+* fix and update tests
+* upgrade to rails 4
+* refactor
