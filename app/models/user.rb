@@ -10,12 +10,16 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6}, on: :create
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: { case_sensitive: false }
-  validates :username,  presence: true, length: { maximum: 25 }, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: true
+  validates :username,  presence: true, length: { maximum: 25 }, uniqueness: true
 
   default_scope order: ('posts_count desc')
-  
+
   scope :active_5, limit(5)
+
+  before_validation do
+    self.email = self.email.downcase if self.email
+  end
 
   #user authentication
   #when user fills in his/her password, it is being hashed (with user's password salt) and compared with password hash stored in db
@@ -28,7 +32,7 @@ class User < ActiveRecord::Base
       nil
     end
   end
-  
+
   #this is used for generating password salt and hash from user's password
   def encrypt_password
     if password.present?

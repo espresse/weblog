@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe "Post" do
-  let(:user) { Factory(:user) }
-  let(:second_user) { Factory(:user) }
-  let(:post1) { Factory(:post, :user => user) }
-  let(:post2) { Factory(:post, :user => user) }
+  let(:user) { create(:user) }
+  let(:second_user) { create(:user) }
+  let(:post1) { create(:post, :user => user) }
+  let(:post2) { create(:post, :user => user) }
 
   before { post1.save }
 
-  it "should allow registered user to add a post" do 
+  it "should allow registered user to add a post" do
   	visit log_in_path
   	fill_in "Email", :with => user.email
   	fill_in "Password", :with => user.password
@@ -21,7 +21,7 @@ describe "Post" do
   	page.should have_content("My new title")
   end
 
-  it "should not allow unregistered user to add a post" do 
+  it "should not allow unregistered user to add a post" do
   	visit new_admin_post_path
   	page.should have_content("You are not authorized to view this content")
   end
@@ -72,10 +72,5 @@ describe "Post" do
   	visit root_path
   	page.should have_content(post1.title)
   	page.should have_content(post2.title)
-  end
-
-  after do
-    User.all.each { |u| u.destroy }
-    Post.all.each { |p| p.destroy }
   end
 end

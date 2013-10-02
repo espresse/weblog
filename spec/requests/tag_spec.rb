@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe "Tag" do
-  let(:user) { Factory(:user) }
-  let(:post1) { Factory(:post, :user => user, :tag_list => "lorem, ipsum, dolor") }
-  let(:post2) { Factory(:post, :user => user, :tag_list => "lorem, dolor, ipsum, color") }
+  let(:user) { create(:user) }
+  let(:post1) { create(:post, :user => user, :tag_list => "lorem, ipsum, dolor") }
+  let(:post2) { create(:post, :user => user, :tag_list => "lorem, dolor, ipsum, color") }
 
   before { post1.save }
 
-  it "should allow registered user to add tags" do 
+  it "should allow registered user to add tags" do
   	visit log_in_path
   	fill_in "Email", :with => user.email
   	fill_in "Password", :with => user.password
@@ -23,7 +23,7 @@ describe "Tag" do
     page.should_not have_content("lorem, ipsum, dolor")
   end
 
-  it "should not allow unregistered user to add tags" do 
+  it "should not allow unregistered user to add tags" do
     visit root_path
   	click_link post1.title
     page.should_not have_content('Edit Post')
@@ -31,7 +31,7 @@ describe "Tag" do
   	page.should have_content("You are not authorized to view this content")
   end
 
-  
+
   it "should allow to search for a tag" do
     post2.save
   	visit root_path
@@ -49,9 +49,5 @@ describe "Tag" do
     click_button "GO"
     page.should have_content post2.title
   end
-  
-  after do
-    User.all.each { |u| u.destroy }
-    Post.all.each { |p| p.destroy }
-  end
+
 end

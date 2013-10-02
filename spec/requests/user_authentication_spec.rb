@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "UserAuthentication" do
-  let(:user) { Factory(:user) }
+  let(:user) { create(:user) }
 
   it "should allow user to register" do
   	visit sign_up_path
@@ -80,7 +80,4 @@ describe "UserAuthentication" do
     page.should have_content("Logged out!")
   end
 
-  after do
-    User.all.each { |u| u.destroy }
-  end
 end

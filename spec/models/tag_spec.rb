@@ -1,48 +1,38 @@
 require 'spec_helper'
 
 describe Tag do
-  before do
-    @user = User.create(username: "Example User", email: "user@example.com", 
-    				password: "foobar", password_confirmation: "foobar")
+  let(:tag) { create(:tag) }
+  let(:post1) { create(:post, tag_list: "tag1, tag2, tag3") }
+  let(:post2) { create(:post, tag_list: "tag1, tag4, #{tag.name}") }
 
-    @post = Post.create(user_id: @user_id, :title => "Example post", :content => "Example content")
-    @tag = Tag.new(:name => "tag1")
+  subject { tag }
+
+  context "database" do
+    it { should have_db_column(:name).of_type(:string) }
+
+    it { should have_db_index(:name) }
   end
 
-  subject { @tag }
+  context "validations" do
+    it { should validate_presence_of(:name) }
+    it { should be_valid }
+  end
 
-  it { should respond_to(:name) }
-  it { should be_valid }
+  context "model" do
+    it { should respond_to(:name) }
+  end
 
-  describe Tag do
-    before do
-      @user = Factory.create(:user)
-      @post1 = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag2, tag3")
-      @post2 = Factory.create(:post, :user =>@user, :title => "What a wonderful world", :tag_list => "tag1, tag4")
-    end
-
-    context "after save" do
-      it "should have pretty permalink" do
-        Tag.where(:name => 'tag3').first.to_param.should == "tag3"
-      end
-
-      it "should return valid tag list" do
-        @post1.tag_list.should eq "tag1, tag2, tag3"
-        @post1.tags.map { |tag| tag.name }.should eq ["tag1", "tag2", "tag3"]
-      end
-    end
-
-    context "when posts have tags" do
-      it "should have one or more posts" do
-        Tag.where(:name=>"tag1").first.posts.should eq [@post2, @post1]
-        Tag.where(:name=>"tag2").first.posts.should eq [@post1]
-        Tag.where(:name=>"tag4").first.posts.should eq [@post2]
-      end
-    end
-    after do
-      User.all.each { |u| u.destroy }
-      Post.all.each { |p| p.destroy }
-      Tag.all.each { |t| t.destroy }
+  describe "after save" do
+    it "should return valid tag list" do
+      post1.tag_list.should eq "tag1, tag2, tag3"
+      post1.tags.map { |tag| tag.name }.should eq ["tag1", "tag2", "tag3"]
     end
   end
+
+  describe "when posts have tags" do
+    it "should have one or more posts" do
+      tag.posts.should eq [post2]
+    end
+  end
+
 end

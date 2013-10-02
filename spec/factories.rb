@@ -1,17 +1,26 @@
-Factory.define :user do |f|
-  f.sequence(:username) { |n| "User #{n}" }
-  f.sequence(:email) { |n| "user#{n}@example.com" }
-  f.password "secret"
-end
+FactoryGirl.define do
 
-Factory.define :post do |f|
-  f.sequence(:title) { |n| "Post Title #{n}" }
-  f.content "Lorem ipsum" * 400
-  f.user { |p| p.association(:user) }
-end
+  factory :user do
+    sequence(:username) { |n| "User #{n}" }
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password "secret"
+  end
 
-Factory.define :comment do |f|
-  f.sequence(:content) { |n| "Comment #{n}" }
-  f.user { |c| p.association(:user) }
-  f.post { |c| c.association(:post) }
+  factory :post do
+    sequence(:title) { |n| "Post Title #{n}" }
+    content "Lorem ipsum" * 400
+    user
+    # tag
+  end
+
+  factory :comment do
+    sequence(:content) { |n| "Comment #{n}" }
+    user
+    post
+  end
+
+  factory :tag do
+    sequence(:name) { |n| "Tag #{n}" }
+  end
+
 end
