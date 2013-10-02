@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
 	delegate :username, to: :user, prefix: true
 
-	default_scope order("created_at DESC")
+	scope :ordered, -> { order("created_at DESC") }
 
 
 	#adding SEO-friendly title for posts. Internet robots will scan the title and index it.
@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
 		unless _new_tags.blank?
 			tags_to_add = _new_tags - _recent_tags
 			xtags = tags_to_add.map do |tag|
-				Tag.find_or_create_by_name(tag)
+				Tag.find_or_create_by(name: tag)
 			end
 			self.tags << xtags
 		end

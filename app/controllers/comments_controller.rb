@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@comment = @post.comments.new(params[:comment])
+		@comment = @post.comments.new(comment_params)
 		@comment.user = current_user if current_user
 		if @comment.save
 			flash[:notice] = "The comment has been added."
@@ -21,5 +21,9 @@ class CommentsController < ApplicationController
 
 	def find_post
 		@post = Post.find(params[:post_id])
+	end
+
+	def comment_params
+	  params.require(:comment).permit(:username, :user_email, :content, :post_id)
 	end
 end

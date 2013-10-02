@@ -16,7 +16,7 @@ class Admin::PostsController < ApplicationController
 	end
 
 	def create
-		@post = current_user.posts.new(params[:post])
+		@post = current_user.posts.new(post_params)
 		if @post.save
 			flash[:notice] = "The post has been updated."
 			redirect_to @post
@@ -30,7 +30,7 @@ class Admin::PostsController < ApplicationController
 	end
 
 	def update
-		if @post.update_attributes(params[:post])
+		if @post.update_attributes(post_params)
 			flash[:notice] = "The post has been updated."
 			redirect_to @post
 		else
@@ -58,6 +58,11 @@ class Admin::PostsController < ApplicationController
 			flash[:error] = "You are not allowed to manage this post"
 			redirect_to admin_posts_path
 		end
+	end
+
+	private
+	def post_params
+	  params.require(:post).permit(:title, :content, :tag_list)
 	end
 
 end

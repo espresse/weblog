@@ -5,4 +5,4 @@
   - if params[:action]=="show" && current_user == @post.user
     %li= link_to "Edit Post", edit_admin_post_path(@post)
   - if params[:action] != "index" && current_user == @post.user
-    %li= link_to "Delete Post", ["admin", @post], :method => :delete, :confirm => "Are you sure?"
+    %li= link_to "Delete Post", ["admin", @post], :method => :delete, data: {confirm: "Are you sure?"}

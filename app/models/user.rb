@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :username
+  # attr_accessible :email, :password, :password_confirmation, :username
   attr_accessor :password
 
   before_save :encrypt_password
@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: true
   validates :username,  presence: true, length: { maximum: 25 }, uniqueness: true
 
-  default_scope order: ('posts_count desc')
+  scope :ordered, -> { order('posts_count desc') }
 
-  scope :active_5, limit(5)
+  scope :active_5, -> { limit(5) }
 
   before_validation do
     self.email = self.email.downcase if self.email
