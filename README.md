@@ -6,13 +6,13 @@ You can download the source code from GitHub:
 
       git clone git@github.com:espresse/weblog.git
 
-Don't forget to run 
+Don't forget to run
 
       bundle install
 
 to download all required by Weblog gem packages.
 
-Database 
+Database
 --------
 
 Currently Weblog is using SQLite Database. Setup is quite simple and requires invoking commands:
@@ -35,8 +35,6 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 
 TODO
 ----
-* change to ruby 2.0 (syntax)
-* move from erb to haml
-* fix and update tests
+* test coverage should be 100%
 * upgrade to rails 4
 * refactor
