@@ -1,0 +1,19 @@
+#block_forms.block
+  .content
+    %h2.title New post
+    .inner.form
+      = render 'form'
+- content_for :sidebar do
+  .block.notice
+    %h4 Actions:
+    .inner
+      = link_to image_tag("icons/go_back.png") + "Posts", admin_posts_path, :class => "button"
+    %div{:style => "clear:both"}
+    %div
+      %table.table
+        %tr
+          %td Created at:
+          %td &nbsp;
+        %tr
+          %td Last update:
+          %td &nbsp;

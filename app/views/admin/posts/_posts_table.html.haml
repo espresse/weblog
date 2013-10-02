@@ -1,0 +1,18 @@
+.content
+  %h2.title Posts
+  .inner
+    %table.table
+      %tbody
+        %tr
+          %th.first id
+          %th Title
+          %th Actions
+        - for post in posts
+          %tr
+            %td{:width => "10%"}= post.id
+            %td{:width => "45%"}
+              = post.title
+            %td{:width => "45%"}
+              = link_to image_tag("icons/show.png") + "Show", post, :class=>"button", :title => "Show", :id => "show_course_#{post.id}"
+              = link_to image_tag("icons/edit.png") + " Edit", edit_admin_post_path(post), :class=>"button", :title => "Edit", :id => "edit_post_#{post.id}"
+              = link_to image_tag("icons/cross.png") + "Destroy", ["admin", post], :confirm => "Are you sure?", :method => :delete, :class=>"button", :title => "Destroy", :id => "destroy_post_#{post.id}"

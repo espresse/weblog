@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    %title Weblog
+    = stylesheet_link_tag    "application", :media => "all"
+    = auto_discovery_link_tag(:atom, "/feeds.atom")
+    :javascript
+      window.q=[];window.$=function(f){q.push(f)}
+    /[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+    /[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+    /[if IE 8] <html class="no-js lt-ie9" lang="en">
+    / [if gt IE 8]><!
+    %html.no-js{:lang => "en"}
+      / <![endif]
+      = csrf_meta_tags
+  %body
+    / Define Header
+    %header
+      = render "shared/header"
+    / End Header
+    #main
+      / Sidebar
+      %aside.column
+        = render "shared/sidebar"
+      / End Sidebar
+      / Main content area
+      %section.column
+        #content
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}"
+          = yield
+    / End of Main content area
+    %div{:style => "clear:both;"}
+    / Footer
+    %footer Copyright (c) 2012 Sitename.com. All rights reserved. Design by Michal Ostrowski.
+    / End of Footer
+    = javascript_include_tag "application"
+    :javascript
+      $.each(q,function(i,f){$(f)});

@@ -1,0 +1,12 @@
+\&nbsp;
+/ Define Navigation/Menu
+.logo
+  .innerlogo
+    %span#logo1 WEB
+    %span#logo2 LOG
+%nav
+  = link_to "homepage", root_path
+  = link_to "posts", posts_path
+  = link_to "authors", users_path
+  = link_to image_tag("feed.png", :size=>"32x32"), "/feeds.atom"
+/ End Navigation

@@ -1,0 +1,10 @@
+.comment{:id => "comment_#{element_counter+1}"}
+  %p.meta
+    %span.date
+      = l element.created_at, :format => :short
+      - if current_user == element.post.user
+        = link_to 'Remove', [element.post, element], :confirm => 'Are you sure?', :method => :delete
+    %span.posted
+      Written by #{element.user.blank? ? element.username : link_to(element.user.username, element.user)}
+    %br/
+  %p= element.content

@@ -1,0 +1,24 @@
+%h1= @post.title
+%p.meta
+  %span.date= l @post.created_at, :format => :short
+  %span.posted
+    Posted by #{link_to @post.user_username, @post.user}
+  %br/
+  - unless @post.tags.blank?
+    %span.tags
+      TAGS:
+      - @post.tags.each do |tag|
+        %span.tag= link_to tag.name, tag
+.entry
+  = @post.content.html_safe
+%div{:style => "clear:both;"}
+%hr/
+%a{:name => "comments"}
+.comments
+  %h1
+    Comments - #{@post.comments.size}
+  = render :partial => "comments/element", :collection => @post.comments
+%a{:name => "add-comment"}
+#add_comment
+  %h1 Add your comment
+  = render "comments/form", :post => @post, :comment => @post.comments.build

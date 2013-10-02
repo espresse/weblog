@@ -1,0 +1,19 @@
+#search
+  = form_tag search_tags_path do
+    %input#search-text{:name => "s", :placeholder => "Search for tag...", :type => "text", :value => ""}/
+    %input#search-submit{:type => "submit", :value => "GO"}/
+#buttons
+  - if current_user
+    = link_to "Sign-out", log_out_path, :class=>"button-link"
+  - else
+    = link_to "Sign-up", sign_up_path, :class=>"button-link"
+    or
+    \#{link_to "Sign-in", log_in_path, :class=>"button-link"}
+= render "admin_sidebar" if current_user
+%h2 Authors
+%ul
+  - active_authors.each do |user|
+    %li= link_to user.username, user
+%h2 Last comments
+%ul
+  = render :partial => "comments/comment", :collection => last_comments

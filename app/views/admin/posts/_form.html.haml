@@ -1,0 +1,18 @@
+= form_for ["admin", @post], :html => { :multipart => true } do |f|
+  - if @post.errors.any?
+    - @post.errors.full_messages.each do |msg|
+      %li= msg
+  .group
+    = f.label :title, :class => "label"
+    = f.text_field :title, :class => "text_field"
+  .group
+    = f.label :content, :class => "label"
+    = f.text_area :content, :class => "text_area"
+  .group
+    = f.label :tag_list
+    %br/
+    = f.text_field :tag_list, :class => "text_field"
+  .group.navform.wat-cf
+    %button.button{:name => "commit", :type => "submit"}
+      = image_tag("icons/tick.png")
+      Submit
