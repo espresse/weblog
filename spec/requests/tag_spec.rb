@@ -3,20 +3,20 @@ require 'spec_helper'
 describe "Tag" do
   let(:tag) { create(:tag)}
   let(:user) { create(:user) }
-  let(:post1) { create(:post, :user => user, :tag_list => "lorem, ipsum, dolor") }
-  let(:post2) { create(:post, :user => user, :tag_list => "lorem, dolor, ipsum, color") }
+  let(:post1) { create(:post, user: user, tag_list: "lorem, ipsum, dolor") }
+  let(:post2) { create(:post, user: user, tag_list: "lorem, dolor, ipsum, color") }
 
   before { post1.save }
 
   it "should allow registered user to add tags" do
   	visit log_in_path
-  	fill_in "Email", :with => user.email
-  	fill_in "Password", :with => user.password
+  	fill_in "Email", with: user.email
+  	fill_in "Password", with: user.password
   	click_button "Submit"
     visit root_path
   	click_link post1.title
     click_link 'Edit Post'
-  	fill_in "Tag list", :with => "oh no!, second"
+  	fill_in "Tag list", with: "oh no!, second"
   	click_button "Submit"
   	page.should have_content("The post has been updated.")
   	page.should have_content("oh no!")
@@ -42,17 +42,17 @@ describe "Tag" do
   it "should allow to search for a tag" do
     post2
   	visit root_path
-    fill_in "search-text", :with => "lorem"
+    fill_in "search-text", with: "lorem"
     click_button "GO"
     page.should have_content post1.title
     page.should have_content post2.title
 
-    fill_in "search-text", :with => "dolor"
+    fill_in "search-text", with: "dolor"
     click_button "GO"
     page.should have_content post1.title
     page.should have_content post2.title
 
-    fill_in "search-text", :with => "color"
+    fill_in "search-text", with: "color"
     click_button "GO"
     page.should have_content post2.title
   end

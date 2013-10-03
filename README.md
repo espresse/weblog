@@ -36,6 +36,5 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 
 TODO
 ----
-* test coverage should be 100% (currently ~91%)
 * refactor
 * truncate.html_safe doesn't work

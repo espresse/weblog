@@ -3,19 +3,19 @@ require 'spec_helper'
 describe "Post" do
   let(:user) { create(:user) }
   let(:second_user) { create(:user) }
-  let(:post1) { create(:post, :user => user) }
-  let(:post2) { create(:post, :user => user) }
+  let(:post1) { create(:post, user: user) }
+  let(:post2) { create(:post, user: user) }
 
   before { post1.save }
 
   it "should allow registered user to add a post" do
   	visit log_in_path
-  	fill_in "Email", :with => user.email
-  	fill_in "Password", :with => user.password
+  	fill_in "Email", with: user.email
+  	fill_in "Password", with: user.password
   	click_button "Submit"
   	click_link "New"
-  	fill_in "Title", :with => "My new title"
-  	fill_in "Content", :with => "Lorem ipsum is the best content"
+  	fill_in "Title", with: "My new title"
+  	fill_in "Content", with: "Lorem ipsum is the best content"
   	click_button "Submit"
   	page.should have_content("The post has been updated.")
   	page.should have_content("My new title")
@@ -38,8 +38,8 @@ describe "Post" do
 
   it "should not allow registered user to manage other user's posts" do
   	visit log_in_path
-  	fill_in "Email", :with => second_user.email
-  	fill_in "Password", :with => second_user.password
+  	fill_in "Email", with: second_user.email
+  	fill_in "Password", with: second_user.password
   	click_button "Submit"
     visit root_path
   	click_link post1.title
@@ -52,8 +52,8 @@ describe "Post" do
 
   it "should allow registered user to manage his posts" do
   	visit log_in_path
-  	fill_in "Email", :with => user.email
-  	fill_in "Password", :with => user.password
+  	fill_in "Email", with: user.email
+  	fill_in "Password", with: user.password
   	click_button "Submit"
     visit root_path
   	click_link post1.title
@@ -62,7 +62,7 @@ describe "Post" do
   	page.should have_link("Delete")
   	visit edit_admin_post_path(post1)
   	page.should have_content "Edit post"
-  	fill_in "Title", :with => "My new title"
+  	fill_in "Title", with: "My new title"
   	click_button "Submit"
   	page.should have_content "My new title"
   end
@@ -76,11 +76,11 @@ describe "Post" do
 
   it "should allow not allow to add a post with missing content" do
     visit log_in_path
-    fill_in "Email", :with => user.email
-    fill_in "Password", :with => user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit"
     click_link "New"
-    fill_in "Title", :with => "My new title"
+    fill_in "Title", with: "My new title"
     click_button "Submit"
     page.should have_content("Post could not be save")
   end
@@ -88,11 +88,11 @@ describe "Post" do
   it "should allow not allow to add a post with missing content" do
     post2.save
     visit log_in_path
-    fill_in "Email", :with => user.email
-    fill_in "Password", :with => user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit"
     visit edit_admin_post_path(post2)
-    fill_in "Title", :with => "My new title"
+    fill_in "Title", with: "My new title"
     click_button "Submit"
     page.should have_content("My new title")
   end
@@ -100,11 +100,11 @@ describe "Post" do
   it "should allow not allow to update a post with empty title" do
     post2.save
     visit log_in_path
-    fill_in "Email", :with => user.email
-    fill_in "Password", :with => user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit"
     visit edit_admin_post_path(post2)
-    fill_in "Title", :with => ""
+    fill_in "Title", with: ""
     click_button "Submit"
     page.should have_content("Post could not be save")
   end
@@ -112,8 +112,8 @@ describe "Post" do
   it "should allow to delete a post" do
     post2.save
     visit log_in_path
-    fill_in "Email", :with => user.email
-    fill_in "Password", :with => user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit"
     visit post_path(post2)
     click_on 'Delete Post'
@@ -128,8 +128,8 @@ describe "Post" do
       end
     end
     visit log_in_path
-    fill_in "Email", :with => user.email
-    fill_in "Password", :with => user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit"
     visit post_path(post2)
     click_on 'Delete Post'

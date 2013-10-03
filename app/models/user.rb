@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates :password, presence: true, length: { minimum: 6}, on: :create
 
-  valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: valid_email_regex }, uniqueness: true
+  validates :email, presence: true, format: { with: Const::VALID_EMAIL_REGEX }, uniqueness: true
   validates :username,  presence: true, length: { maximum: 25 }, uniqueness: true
 
   scope :ordered, -> { order('posts_count desc') }

@@ -46,7 +46,7 @@ describe Post do
   end
 
   describe Post do
-    let(:post) { create(:post, :user =>user, :title => "What a wonderful world", :tag_list => "tag1, tag2, tag3") }
+    let(:post) { create(:post, user: user, title: "What a wonderful world", tag_list: "tag1, tag2, tag3") }
 
     context "after save" do
       it "should have pretty permalink" do
@@ -61,8 +61,8 @@ describe Post do
 
     context "with comments" do
       it "should have them :)" do
-        comment1 = create(:comment, :user=>user, :post=>post)
-        comment2 = create(:comment, :user=>user, :post=>post)
+        comment1 = create(:comment, user: user, post: post)
+        comment2 = create(:comment, user: user, post: post)
         post.reload.comments.should eq [comment1, comment2]
       end
     end

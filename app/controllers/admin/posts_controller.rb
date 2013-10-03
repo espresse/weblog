@@ -4,7 +4,7 @@ class Admin::PostsController < ApplicationController
 	before_filter :find_post, only: [:edit, :update, :destroy]
 
 	def index
-		@posts = current_user.posts.order('created_at DESC').page params[:page]
+		@posts = current_user.posts.ordered.page params[:page]
 	end
 
 	def new

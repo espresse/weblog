@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+	attr_accessor :tag_list
 
 	belongs_to :user, counter_cache: true
 
@@ -21,7 +22,7 @@ class Post < ActiveRecord::Base
 
 	#tag list to be displayed in post's form
 	def tag_list
-		self.tags.map { |tag| tag.name }.join(', ')
+		@tag_list ||= self.tags.map { |tag| tag.name }.join(', ')
 	end
 
 	#tag list taken from form has to be put into taggable
@@ -29,19 +30,8 @@ class Post < ActiveRecord::Base
 		_new_tags = my_tags.split(',').map { |t| t.strip }.uniq
 		_recent_tags = self.tags.map { |tag| tag.name }
 
-		unless _recent_tags.blank?
-			tags_to_remove = _recent_tags - _new_tags
-			tags_to_remove.each do |tag|
-				self.tags.where(name: tag).first.destroy
-			end
-		end
-
-		unless _new_tags.blank?
-			tags_to_add = _new_tags - _recent_tags
-			xtags = tags_to_add.map do |tag|
-				Tag.find_or_create_by(name: tag)
-			end
-			self.tags << xtags
-		end
+		(_recent_tags - _new_tags).each { |tag| self.tags.where(name: tag).first.destroy } unless _recent_tags.blank?
+		self.tags << (_new_tags - _recent_tags).map { |tag| Tag.find_or_create_by(name: tag) } unless _new_tags.blank?
+		@tag_list = nil
 	end
 end
