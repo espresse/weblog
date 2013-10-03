@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "Tag" do
+  let(:tag) { create(:tag)}
   let(:user) { create(:user) }
   let(:post1) { create(:post, :user => user, :tag_list => "lorem, ipsum, dolor") }
   let(:post2) { create(:post, :user => user, :tag_list => "lorem, dolor, ipsum, color") }
@@ -31,9 +32,15 @@ describe "Tag" do
   	page.should have_content("You are not authorized to view this content")
   end
 
+  it "should display all tags" do
+    tag
+    visit tags_path
+    page.should have_content "#{tag.name}"
+  end
+
 
   it "should allow to search for a tag" do
-    post2.save
+    post2
   	visit root_path
     fill_in "search-text", :with => "lorem"
     click_button "GO"

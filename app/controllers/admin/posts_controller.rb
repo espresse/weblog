@@ -1,14 +1,10 @@
 class Admin::PostsController < ApplicationController
 	layout "admin"
-	before_filter :authorize_admin!, except: [:index, :show]
-	before_filter :find_post, only: [:show, :edit, :update, :destroy]
-	
+	before_filter :authorize_admin!, except: [:index]
+	before_filter :find_post, only: [:edit, :update, :destroy]
+
 	def index
 		@posts = current_user.posts.order('created_at DESC').page params[:page]
-	end
-
-	def show
-		redirect_to @post
 	end
 
 	def new
@@ -36,7 +32,7 @@ class Admin::PostsController < ApplicationController
 		else
 			flash[:error] = "Post could not be save."
 			render :new
-		end	
+		end
 	end
 
 	def destroy
@@ -46,7 +42,7 @@ class Admin::PostsController < ApplicationController
 		else
 			flash[:error] = "Post could not be deleted."
 			render :new
-		end	
+		end
 	end
 
 	private

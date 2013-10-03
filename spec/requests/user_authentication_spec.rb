@@ -70,6 +70,14 @@ describe "UserAuthentication" do
     page.should have_content("Logged in!")
   end
 
+  it "should not allow user to log in with wrong credits" do
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => "invalid"
+    click_button "Submit"
+    page.should have_content("Invalid email or password")
+  end
+
   it "should allow user to log out" do
     visit log_in_path
     fill_in "Email", :with => user.email
@@ -78,6 +86,18 @@ describe "UserAuthentication" do
     page.should have_content("Logged in!")
     visit log_out_path
     page.should have_content("Logged out!")
+  end
+
+  it "should list all users" do
+    user
+    visit users_path
+    page.should have_content(user.username)
+  end
+
+  it "should list user's posts" do
+    user
+    visit user_path(user)
+    page.should have_content(user.username)
   end
 
 end

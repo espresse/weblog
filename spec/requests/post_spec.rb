@@ -73,4 +73,67 @@ describe "Post" do
   	page.should have_content(post1.title)
   	page.should have_content(post2.title)
   end
+
+  it "should allow not allow to add a post with missing content" do
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Submit"
+    click_link "New"
+    fill_in "Title", :with => "My new title"
+    click_button "Submit"
+    page.should have_content("Post could not be save")
+  end
+
+  it "should allow not allow to add a post with missing content" do
+    post2.save
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Submit"
+    visit edit_admin_post_path(post2)
+    fill_in "Title", :with => "My new title"
+    click_button "Submit"
+    page.should have_content("My new title")
+  end
+
+  it "should allow not allow to update a post with empty title" do
+    post2.save
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Submit"
+    visit edit_admin_post_path(post2)
+    fill_in "Title", :with => ""
+    click_button "Submit"
+    page.should have_content("Post could not be save")
+  end
+
+  it "should allow to delete a post" do
+    post2.save
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Submit"
+    visit post_path(post2)
+    click_on 'Delete Post'
+    page.should have_content("The post has been deleted.")
+  end
+
+  it "should flash a message when delete failed" do
+    post2.save
+    class Post
+      def destroy
+        false
+      end
+    end
+    visit log_in_path
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Submit"
+    visit post_path(post2)
+    click_on 'Delete Post'
+    page.should have_content("Post could not be deleted.")
+  end
+
 end

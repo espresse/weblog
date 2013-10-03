@@ -59,4 +59,17 @@ describe "Comment" do
     page.should have_content("Username can't be blank")
   end
 
+  it "should allow user to add a comment in a seprate view" do
+    visit new_post_comment_path(post1)
+    fill_in "User email", :with => "my@email.com"
+    fill_in "Username", :with => "anonymous"
+    fill_in "Content", :with => "Lorem ipsum is the best content"
+    click_button "Submit"
+    page.should have_content("The comment has been added.")
+    within("#comment_1") do
+      page.should have_content("anonymous")
+     page.should have_content("Lorem ipsum is the best content")
+    end
+  end
+
 end

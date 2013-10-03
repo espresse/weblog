@@ -12,17 +12,17 @@ Weblog::Application.routes.draw do
     resources :comments
   end
 
-  resources :tags, only: [:index, :show] do 
+  resources :tags, only: [:index, :show] do
     collection do
       post "search" => "tags#search"
     end
   end
-  
+
   resources :feeds, only: [:index]
 
   #admin panel
   namespace :admin do
-    resources :posts
+    resources :posts, except: [:show]
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
