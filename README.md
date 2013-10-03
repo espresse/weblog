@@ -1,6 +1,7 @@
 Weblog
 ============
-Blogging application written in Ruby 1.9 and Ruby on Rails 3.2
+Blogging application written in Ruby 2.0 and Ruby on Rails 4.0
+As this is just a test application, many things are made from scratch, particulary authentication and tagging. However, it might change in future. Take a look at TODO to get a brief look of what I'm currently working on.
 
 You can download the source code from GitHub:
 
@@ -35,6 +36,5 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 
 TODO
 ----
-* test coverage should be 100%
-* upgrade to rails 4
+* test coverage should be 100% (currently ~91%)
 * refactor
