@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # attr_accessible :email, :password, :password_confirmation, :username
   attr_accessor :password
 
   before_save :encrypt_password
@@ -25,7 +24,7 @@ class User < ActiveRecord::Base
   #when user fills in his/her password, it is being hashed (with user's password salt) and compared with password hash stored in db
   #if it is same then user is authenticated
   def self.authenticate(email, password)
-    user = find_by_email(email)
+    user = find_by(email: email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else

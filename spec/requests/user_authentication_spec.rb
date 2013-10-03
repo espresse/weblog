@@ -49,7 +49,7 @@ describe "UserAuthentication" do
   	fill_in "Password", :with => "thePassword"
   	fill_in "Password confirmation", :with => "theP4ssword"
   	click_button "Submit"
-  	page.should have_content("Password doesn't match confirmation")
+  	page.should have_content("Password confirmation doesn't match Password")
   end
 
   it "should not allow user to register with existing email" do
