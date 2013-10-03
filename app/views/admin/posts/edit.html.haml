@@ -7,10 +7,10 @@
   .block.notice
     %h4 Actions:
     .inner
-      = link_to image_tag("icons/show.png") + "Show", [@post], :class => "button"
-      = link_to image_tag("icons/cross.png") + "Destroy", ["admin", @post], :method => :delete, data: {confirm: "Are you sure?"}, :class => "button right"
-      = link_to image_tag("icons/go_back.png") + "Posts", admin_posts_path, :class => "button"
-      %div{:style => "clear:both;"} &nbsp;
+      = link_to image_tag("icons/show.png") + "Show", [@post], class: "button"
+      = link_to image_tag("icons/cross.png") + "Destroy", ["admin", @post], method: :delete, data: {confirm: "Are you sure?"}, class: "button right"
+      = link_to image_tag("icons/go_back.png") + "Posts", admin_posts_path, class: "button"
+      %div{style: "clear:both;"} &nbsp;
       %div
         %table.table
           %tr

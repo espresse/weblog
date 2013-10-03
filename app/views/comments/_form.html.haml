@@ -1,4 +1,4 @@
-= form_for [post, comment], :html => { :class => "box" } do |f|
+= form_for [post, comment], html: { class: "box" } do |f|
   - if comment.errors.any?
     .error_messages
       %h2 Form is invalid
@@ -9,12 +9,12 @@
     - unless current_user
       = f.label :user_email
       %br/
-      = f.text_field :user_email, :class=>"input_text", :required => "required"
+      = f.text_field :user_email, class: "input_text", required: "required"
       = f.label :username
       %br/
-      = f.text_field :username, :class=>"input_text", :required => "required"
+      = f.text_field :username, class: "input_text", required: "required"
     = f.label :content
     %br/
-    = f.text_area :content, :class=>"txtField", :required => "required"
+    = f.text_area :content, class: "txtField", required: "required"
   %footer
-    = f.submit "Submit", :class => "btnSubmit"
+    = f.submit "Submit", class: "btnSubmit"

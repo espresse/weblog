@@ -1,5 +1,5 @@
 %h1 Log in
-= form_tag sessions_path, :class => "box" do
+= form_tag sessions_path, class: "box" do
   %fieldset.boxBody
     = label_tag :email
     %br/
@@ -8,4 +8,4 @@
     %br/
     = password_field_tag :password
   %footer
-    = submit_tag "Submit", :class => "btnSubmit"
+    = submit_tag "Submit", class: "btnSubmit"

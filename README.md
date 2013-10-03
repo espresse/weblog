@@ -38,3 +38,4 @@ TODO
 ----
 * test coverage should be 100% (currently ~91%)
 * refactor
+* truncate.html_safe doesn't work

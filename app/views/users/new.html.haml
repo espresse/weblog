@@ -1,5 +1,5 @@
 %h1 Sign Up
-= form_for @user, :html => { :class => "box" } do |f|
+= form_for @user, html: { class: "box" } do |f|
   - if @user.errors.any?
     .error_messages
       %h2 Form is invalid
@@ -20,4 +20,4 @@
     %br/
     = f.password_field :password_confirmation
   %footer
-    = f.submit "Submit", :class => "btnSubmit"
+    = f.submit "Submit", class: "btnSubmit"

@@ -1,4 +1,4 @@
-= form_for post, :html => { :class => "box" } do |f|
+= form_for post, html: { class: "box" } do |f|
   - if post.errors.any?
     .error_messages
       %h2 Form is invalid
@@ -8,12 +8,12 @@
   %fieldset.boxBody
     = f.label :title
     %br/
-    = f.text_field :title, :class=>"input_text"
+    = f.text_field :title, class: "input_text"
     = f.label :content
     %br/
-    = f.text_area :content, :class=>"txtField"
+    = f.text_area :content, class: "txtField"
     = f.label :tag_list
     %br/
     = f.text_field :tag_list
   %footer
-    = f.submit "Submit", :class => "btnSubmit"
+    = f.submit "Submit", class: "btnSubmit"

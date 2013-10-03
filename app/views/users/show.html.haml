@@ -4,10 +4,10 @@
 - @posts.each do |post|
   %h1= link_to post.title, post
   %p.meta
-    %span.date= l post.created_at, :format => :short
+    %span.date= l post.created_at, format: :short
     %span.posted
       Posted by
-      %a{:href => "#"}= post.user_username
+      %a{href: "#"}= post.user_username
     %br/
     - unless post.tags.blank?
       %span.tags
@@ -15,10 +15,10 @@
         - post.tags.each do |tag|
           %span.tag= link_to tag.name, tag
   .entry
-    = truncate(post.content, :length => 600).html_safe
+    = truncate(post.content, length: 600).html_safe
     %nav
-      = link_to "Read More", post, :class => "more"
-      = link_to "Comments", post_path(post)+"#comments", :class => "more"
-  %div{:style => "clear:both;"}
+      = link_to "Read More", post, class: "more"
+      = link_to "Comments", post_path(post)+"#comments", class: "more"
+  %div{style: "clear:both;"}
   %hr/
 = paginate @posts
