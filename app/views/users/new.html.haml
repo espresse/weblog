@@ -9,11 +9,11 @@
   %fieldset.boxBody
     = f.label :email
     %br/
-    = f.text_field :email
-    = f.label :username
+    = f.email_field :email
+    = f.label :username, pattern: ".{3,25}"
     %br/
     = f.text_field :username
-    = f.label :password
+    = f.label :password, pattern: ".{6,}"
     %br/
     = f.password_field :password
     = f.label :password_confirmation

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require trunk8.1.3.1
 $(function() {
   var heighest = 0;
   var $columnsToEqualize = $(".column");
@@ -22,4 +23,10 @@ $(function() {
     }
   });
   $columnsToEqualize.height(heighest);
+
+  $('.truncated').trunk8({
+    lines: 7,
+    tooltip: false,
+    fill: '&hellip;'
+  });
 });

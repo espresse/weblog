@@ -3,7 +3,8 @@
     = link_to user.username, user
     (Posts: #{user.posts.count})
   .entry
-    = truncate(user.posts.last.content.html_safe, length: 600).html_safe unless user.posts.blank?
+    .truncated
+      = user.posts.last.content.html_safe unless user.posts.blank?
   %div{style: "clear:both;"}
   %hr/
   %div{style: "clear:both;"}

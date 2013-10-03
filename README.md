@@ -34,7 +34,8 @@ Tests are prepared with RSpec and Cucumber for database and web interface integr
 
     bundler exec rspec spec
 
+As you can see many of the test cases are redundand and look like kind of uncessary work. The reason for that is they act as an example of what you could possibly expect. So just read them and enjoy :)
+
 TODO
 ----
 * refactor
-* truncate.html_safe doesn't work

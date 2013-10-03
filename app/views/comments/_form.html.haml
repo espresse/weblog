@@ -9,12 +9,12 @@
     - unless current_user
       = f.label :user_email
       %br/
-      = f.text_field :user_email, class: "input_text", required: "required"
+      = f.email_field :user_email, class: "input_text", required: "required"
       = f.label :username
       %br/
       = f.text_field :username, class: "input_text", required: "required"
     = f.label :content
     %br/
-    = f.text_area :content, class: "txtField", required: "required"
+    = f.text_area :content, class: "txtField", required: "required", pattern: ".{2,}"
   %footer
     = f.submit "Submit", class: "btnSubmit"
